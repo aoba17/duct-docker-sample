@@ -1,0 +1,9 @@
+(ns duct-docker-sample.handler.index
+  (:require [ataraxy.core :as ataraxy]
+            [ataraxy.response :as response]
+            [duct-docker-sample.views.index :as views.index]
+            [integrant.core :as ig]))
+
+(defmethod ig/init-key :duct-docker-sample.handler/index [_ options]
+  (fn [{[_] :ataraxy/result}]
+    [::response/ok (views.index/list-options)]))

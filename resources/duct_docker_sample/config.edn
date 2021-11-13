@@ -2,10 +2,11 @@
  {:duct.core/project-ns duct-docker-sample
 
   :duct.router/ataraxy
-  {:routes {[:get "/example"] [:duct-docker-sample.handler/example]}}
+  {:routes {[:get "/"] [:duct-docker-sample.handler/index]}}
 
   :duct-docker-sample.handler/example
-  {:db #ig/ref :duct.database/sql}}
+  {:db #ig/ref :duct.database/sql}
+  :duct-docker-sample.handler/index {}}
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"

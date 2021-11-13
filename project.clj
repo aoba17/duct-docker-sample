@@ -8,7 +8,8 @@
                  [duct/module.logging "0.5.0"]
                  [duct/module.sql "0.6.1"]
                  [duct/module.web "0.7.3"]
-                 [org.xerial/sqlite-jdbc "3.34.0"]]
+                 [org.xerial/sqlite-jdbc "3.34.0"]
+                 [hiccup "1.0.5"]]
   :plugins [[duct/lein-duct "0.12.3"]]
   :main ^:skip-aot duct-docker-sample.main
   :resource-paths ["resources" "target/resources"]
