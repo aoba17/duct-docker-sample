@@ -1,0 +1,18 @@
+{:duct.profile/base
+ {:duct.core/project-ns duct-docker-sample
+
+  :duct.router/ataraxy
+  {:routes {[:get "/example"] [:duct-docker-sample.handler/example]}}
+
+  :duct-docker-sample.handler/example
+  {:db #ig/ref :duct.database/sql}}
+
+ :duct.profile/dev   #duct/include "dev"
+ :duct.profile/local #duct/include "local"
+ :duct.profile/prod  {}
+
+ :duct.module/logging {}
+ :duct.module.web/site
+ {}
+ :duct.module/sql
+ {}}
