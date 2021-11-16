@@ -1,6 +1,11 @@
 {:duct.profile/base
  {:duct.core/project-ns duct-docker-sample
-
+  :duct.database.sql/hikaricp {:adapter "postgresql"
+                               :port-number #duct/env ["DB_PORT"]
+                               :server-name #duct/env ["DB_HOST"]
+                               :database-name "filmdb"
+                               :username "filmuser"
+                               :password #duct/env ["DB_PASSWORD"]}
   :duct.router/ataraxy
   {:routes {[:get "/"] [:duct-docker-sample.handler/index]
             "/add-film"
@@ -18,7 +23,7 @@
   {:migrations [#ig/ref :duct-docker-sample.migrations/create-film]}
 
   [:duct.migrator.ragtime/sql :duct-docker-sample.migrations/create-film]
-  {:up ["CREATE TABLE film (id INTEGER PRIMARY KEY, name TEXT UNIQUE, description TEXT, rating INTEGER)"]
+  {:up ["CREATE TABLE film (id SERIAL PRIMARY KEY, name TEXT UNIQUE, description TEXT, rating INTEGER)"]
    :down ["DROP TABLE film"]}}
 
  :duct.profile/dev   #duct/include "dev"
@@ -26,7 +31,6 @@
  :duct.profile/prod  {}
 
  :duct.module/logging {}
- :duct.module.web/site
- {}
- :duct.module/sql
- {}}
+ :duct.module.web/site {}
+ :duct.module/sql {}
+ }
